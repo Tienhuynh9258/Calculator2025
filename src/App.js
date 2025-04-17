@@ -7,18 +7,20 @@ function App() {
   const [equation, setEquation] = useState('');
 
   const handleNumber = (number) => {
-    setDisplay(display === '0' ? number : display + number);
+    if (display === '0' && number !== '.') {
+      setDisplay(number);
+    } else {
+      setDisplay(display + number);
+    }
   };
 
   const handleOperator = (operator) => {
-    setEquation(display + operator);
-    setDisplay('0');
+    setDisplay(display + operator);
   };
 
   const handleEquals = () => {
     try {
-      const sanitizedInput = (equation + display).replace(/[^0-9+\-*/().]/g, '');
-      const result = evaluate(sanitizedInput);
+      const result = evaluate(display);
       setDisplay(String(result));
       setEquation('');
     } catch (error) {

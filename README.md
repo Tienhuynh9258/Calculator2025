@@ -23,4 +23,40 @@ This command will:
 ```bash
 npm run build
 npm run deploy
-```
+
+## Running Cypress Tests
+To run Cypress tests in this project:
+
+1. Install Cypress if not already installed:
+    ```bash
+    npm install cypress --save-dev
+    ```
+
+2. Open the Cypress Test Runner:
+    ```bash
+    npx cypress open
+    ```
+
+    This will launch the Cypress Test Runner where you can select and run tests.
+
+3. Alternatively, to run tests in headless mode:
+    ```bash
+    npx cypress run
+    ```
+
+    This will execute all tests in the terminal without opening the Test Runner.
+
+4. Add test scripts to your `package.json` for convenience:
+    ```json
+    "scripts": {
+      "cypress:open": "cypress open",
+      "cypress:run": "cypress run"
+    }
+    ```
+
+    Then, you can run:
+    ```bash
+    npm run cypress:open
+    npm run cypress:run
+    ```
+
