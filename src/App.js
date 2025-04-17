@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { evaluate } from 'mathjs';
 import "./App.css";
 
 function App() {
@@ -16,11 +17,13 @@ function App() {
 
   const handleEquals = () => {
     try {
-      const result = eval(equation + display);
+      const sanitizedInput = (equation + display).replace(/[^0-9+\-*/().]/g, '');
+      const result = evaluate(sanitizedInput);
       setDisplay(String(result));
       setEquation('');
     } catch (error) {
-      setDisplay('Error');
+      console.error('Calculation error:', error);
+      setDisplay('Invalid Input');
     }
   };
 
